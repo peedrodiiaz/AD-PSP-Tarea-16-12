@@ -1,0 +1,7 @@
+package com.salesianostriana.dam.skillhub.Repositories;
+
+import com.salesianostriana.dam.skillhub.models.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User,Long> {
+}
