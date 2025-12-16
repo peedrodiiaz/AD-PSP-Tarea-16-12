@@ -21,7 +21,7 @@ public class User {
     private  Long id;
     private String name;
 
-    @OneToMany (mappedBy = "user")
+    @OneToMany (mappedBy = "instructor")
     private Set<Course>courses= new HashSet<>();
 
     @OneToMany(mappedBy = "user")

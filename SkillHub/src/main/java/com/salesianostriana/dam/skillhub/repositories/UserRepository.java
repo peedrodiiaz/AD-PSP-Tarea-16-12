@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.skillhub.Repositories;
+package com.salesianostriana.dam.skillhub.repositories;
 
 import com.salesianostriana.dam.skillhub.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;

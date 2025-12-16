@@ -22,9 +22,12 @@ public class Course {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User instructor;
     @OneToMany (mappedBy = "course")
     private Set<Lesson> lessons = new HashSet<>();
+
+    @OneToMany(mappedBy = "course")
+    private Set<Enrollment> enrollments = new HashSet<>();
 
     @Builder.Default
     @ManyToMany
