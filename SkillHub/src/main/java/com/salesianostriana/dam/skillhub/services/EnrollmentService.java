@@ -42,7 +42,7 @@ public class EnrollmentService {
     public Enrollment actualizarProgreso (int progreso, Long id){
 
         Enrollment enrollment = enrollmentRepository.findById(id).orElseThrow(
-                ()-> new EntityNotFoundException("No se he encotrado un enrollement")
+                ()-> new EntityNotFoundException("No se he encontrado un enrollment")
         );
          enrollment.setProgressPercent(progreso);
         return enrollment;
