@@ -23,5 +23,4 @@ public class CategoryService {
         return category.getCourses();
     }
 
-
 }

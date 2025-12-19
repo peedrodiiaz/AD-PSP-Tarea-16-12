@@ -20,9 +20,11 @@ public class Course {
     private Long id;
     private String name;
 
+    private CursoState cursoState;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User instructor;
+    private User user;
     @OneToMany (mappedBy = "course")
     private Set<Lesson> lessons = new HashSet<>();
 

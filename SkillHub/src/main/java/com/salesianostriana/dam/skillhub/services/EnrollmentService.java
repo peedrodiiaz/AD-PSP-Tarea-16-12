@@ -16,35 +16,33 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class EnrollmentService {
 
-    private final UserRepository userRepository;
-    private final CourseRepository courseRepository;
-    private final EnrollmentRepository enrollmentRepository;
+        private final UserRepository userRepository;
+        private final CourseRepository courseRepository;
+        private final EnrollmentRepository enrollmentRepository;
 
-    public Enrollment UserInCurso(Long userid, Long cursoId){
+        public Enrollment UserInCurso(Long userid, Long cursoId) {
 
-        User user= userRepository.findById(userid).orElseThrow(
-                ()-> new EntityNotFoundException("No se ha encontrdo el usaurio con id %d".formatted(userid))
-        );
-        Course course = courseRepository.findById(cursoId).orElseThrow(
-                ()-> new EntityNotFoundException("No se ha encontrado un curso con id %d".formatted(cursoId))
-        );
+                User user = userRepository.findById(userid).orElseThrow(
+                                () -> new EntityNotFoundException(
+                                                "No se ha encontrdo el usaurio con id %d".formatted(userid)));
+                Course course = courseRepository.findById(cursoId).orElseThrow(
+                                () -> new EntityNotFoundException(
+                                                "No se ha encontrado un curso con id %d".formatted(cursoId)));
 
+                return enrollmentRepository.save(Enrollment.builder()
+                                .enrolledAt(LocalDate.now())
+                                .course(course)
+                                .user(user)
+                                .progressPercent(0)
+                                .build());
 
-      return  enrollmentRepository.save(Enrollment.builder()
-                        .enrolledAt(LocalDate.now())
-                        .course(course)
-                        .user(user)
-                        .progressPercent(0)
-                        .build());
+        }
 
-    }
+        public Enrollment actualizarProgreso(int progreso, Long id) {
 
-    public Enrollment actualizarProgreso (int progreso, Long id){
-
-        Enrollment enrollment = enrollmentRepository.findById(id).orElseThrow(
-                ()-> new EntityNotFoundException("No se he encontrado un enrollment")
-        );
-         enrollment.setProgressPercent(progreso);
-        return enrollment;
-    }
+                Enrollment enrollment = enrollmentRepository.findById(id).orElseThrow(
+                                () -> new EntityNotFoundException("No se he encontrado un enrollment"));
+                enrollment.setProgressPercent(progreso);
+                return enrollment;
+        }
 }

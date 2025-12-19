@@ -20,6 +20,7 @@ public class User {
     @Id @GeneratedValue
     private  Long id;
     private String name;
+    private UserRol userRol;
 
     @OneToMany (mappedBy = "instructor")
     private Set<Course>courses= new HashSet<>();

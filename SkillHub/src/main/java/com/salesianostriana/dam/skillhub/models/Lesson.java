@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
-import java.awt.*;
 import java.util.Objects;
 
 @Entity
@@ -13,15 +12,19 @@ import java.util.Objects;
 @Builder
 @Getter
 @Setter
+@Table(uniqueConstraints={@UniqueConstraint(columnNames = {"orderIndex"})})
 public class Lesson {
 
     @Id @GeneratedValue
     private Long id;
     private String name;
 
+    private int orderIndex;
+
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
+    
 
     @Override
     public final boolean equals(Object o) {
